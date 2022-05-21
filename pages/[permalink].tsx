@@ -5,6 +5,8 @@ import { AlternativeHero } from '../components/Hero'
 import { getArticle } from '../services/article'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
+import Head from 'next/head'
+import { titleConverter } from '../utils/articleUtils'
 
 const Container = styled.div`
 	max-width: 800px;
@@ -81,6 +83,15 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Head>
+				<title>{ permalink ? titleConverter(permalink) : 'Error 404' } - Octa | Blog</title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<meta property="og:title" content="Octa - Blog" key="title" />
+				<meta property="og:type" content="website" key="type" />
+				<meta property="og:url" content="https://octa.page" key="url" />
+				<meta property="og:image" content="cover.svg" key="image" />
+				<meta property="og:description" content="Programando el futuro. Innovando el presente." key="description" />
+			</Head>
 			<AlternativeHero />
 			{
 				permalink && article && article.content &&

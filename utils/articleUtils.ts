@@ -46,7 +46,7 @@ function dateConverter (date: string): string {
 	return `${day} de ${months[month]} de ${year}`
 }
 
-function titleConverter (title: string): string {
+export function titleConverter (title: string): string {
 	const _title = title.replaceAll('_', ' ')
 	return _title.charAt(0).toUpperCase() + _title.slice(1)
 }
