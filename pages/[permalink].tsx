@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { AlternativeHero } from '../components/Hero'
 import { getArticle } from '../services/article'
 import styled from 'styled-components'
+import Footer from '../components/Footer'
 
 const Container = styled.div`
 	max-width: 800px;
@@ -91,6 +92,7 @@ const Home: NextPage = () => {
 						<img className="error" src='./404.svg' alt='Error 404' />
 					</Container>
 			}
+			<Footer />
 		</>
 	)
 }
