@@ -40,6 +40,18 @@ const Container = styled.div`
 		font-weight: 600;
 	}
 
+	pre {
+		max-width: 100%;
+		width: 100%;
+		overflow-x: auto;
+		margin-bottom: 20px;
+		background-color: #1b2426;
+		color: #f8f8f2;
+		padding: 15px;
+		font-size: 0.9rem;
+		border-radius: 5px;
+	}
+
 	img.error {
 		max-width: 400px;
 		margin: 0 auto;
