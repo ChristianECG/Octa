@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getArticles } from '../services/articles'
 import { slugToArticle } from '../utils/articleUtils'
 import { BsChevronDoubleDown } from "react-icons/bs";
+import Link from 'next/link'
 
 const Article = styled.article`
 	display: flex;
@@ -12,6 +13,7 @@ const Article = styled.article`
 	justify-content: space-between;
 	text-align: center;
 	height: 100%;
+	cursor: pointer;
 
 	h1 {
 		font-size: 1.2rem;
@@ -56,7 +58,7 @@ const ArticlesContainer: NextPage = () => {
 		return articles.map((article, idx) => {
 			const _article = slugToArticle(article)
 			return (
-				<a key={idx} href={`/${_article.permalink}`}>
+				<Link key={idx} href={`/${_article.permalink}`}>
 					<Article>
 						<section>
 							<h1>{_article.title}</h1>
@@ -64,7 +66,7 @@ const ArticlesContainer: NextPage = () => {
 						</section>
 						<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
 					</Article>
-				</a>
+				</Link>
 			)
 		})
 	}

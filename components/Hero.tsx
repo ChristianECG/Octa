@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { RiGlobalLine, RiLinkedinLine, RiTwitterLine } from "react-icons/ri";
 import type { NextPage } from 'next'
+import Link from 'next/link';
 
 const HeroContainer = styled.header`
 	display: flex;
@@ -18,10 +19,11 @@ const Icon = styled.img`
 	height: 2rem;
 `
 
-const IconContainer = styled.a`
+const IconContainer = styled.span`
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
+	cursor: pointer;
 `
 
 const Header = styled.h1`
@@ -74,9 +76,9 @@ const Hero: NextPage = () => {
 	return (
 		<HeroContainer style={{maxHeight: '500px'}}>
 			<HeaderContainer>
-				<IconContainer href="/">
-					<Icon src='./favicon.ico' />
-					<Header>Octa</Header>
+				<IconContainer>
+					<Link href="/"><Icon src='./favicon.ico' /></Link>
+					<Link href="/"><Header>Octa</Header></Link>
 				</IconContainer>
 				<SocialIcons>
 					<a href="https://twitter.com/ChristianECG_" target="_blank">
@@ -102,9 +104,9 @@ const AlternativeHero = () => {
 	return (
 		<HeroContainer style={{height: 'auto'}}>
 			<HeaderContainer>
-				<IconContainer href="/">
-					<Icon src='./favicon.ico' />
-					<Header>Octa</Header>
+				<IconContainer>
+					<Link href="/"><Icon src='./favicon.ico' /></Link>
+					<Link href="/"><Header>Octa</Header></Link>
 				</IconContainer>
 				<SocialIcons>
 					<a href="https://twitter.com/ChristianECG_" target="_blank">
