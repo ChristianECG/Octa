@@ -20,17 +20,15 @@ const StyledFooter = styled.footer`
 	}
 `
 
-const Footer: NextPage = () => {
-	return (
-		<StyledFooter>
-			<p>
-				Este blog está  hecho con ❤️ por <a href="https://twitter.com/ChristianECG_">Christian Elías</a>
-			</p>
-			<p>
-				Todos los derechos reservados &copy; {new Date().getFullYear()}
-			</p>
-		</StyledFooter>
-	)
-}
+const Footer: NextPage = () => (
+	<StyledFooter>
+		<p>
+			Este blog está  hecho con ❤️ por <a href="https://twitter.com/ChristianECG_">Christian Elías</a>
+		</p>
+		<p>
+			Todos los derechos reservados &copy; {new Date().getFullYear()}
+		</p>
+	</StyledFooter>
+)
 
 export default Footer

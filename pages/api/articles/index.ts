@@ -3,10 +3,10 @@ import fs from 'fs'
 
 export default function handler(
 	req: NextApiRequest,
-	res: NextApiResponse<string[]>
+	res: NextApiResponse<string[]>,
 ) {
-	const limit: number = parseInt(req.query.limit as string)
-	const page: number = parseInt(req.query.page  as string)
+	const limit: number = parseInt(req.query.limit as string, 10)
+	const page: number = parseInt(req.query.page  as string, 10)
 
 	const articles: string[] = fs.readdirSync('./articles').reverse()
 

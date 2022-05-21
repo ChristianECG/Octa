@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { BsChevronDoubleDown } from "react-icons/bs"
+import Link from 'next/link'
 import { getArticles } from '../services/articles'
 import { slugToArticle } from '../utils/articleUtils'
-import { BsChevronDoubleDown } from "react-icons/bs";
-import Link from 'next/link'
 
 const Article = styled.article`
 	display: flex;
@@ -56,33 +56,32 @@ const ArticlesContainer: NextPage = () => {
 	const [page, setPage] = useState(0)
 	const [lastResult, setLastResult] = useState(9)
 
-	const ArticlesMapper = (articles: string[] ) => {
-		return articles.map((article, idx) => {
-			const _article = slugToArticle(article)
-			return (
-				<Link key={idx} href={`/${_article.permalink}`}>
-					<Article>
-						<section>
-							<h1>{_article.title}</h1>
-							<p>{_article.date}</p>
-						</section>
-						<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
-					</Article>
-				</Link>
-			)
-		})
-	}
+	const ArticlesMapper = (_articles: string[] ) => _articles.map((article, idx) => {
+		const _article = slugToArticle(article)
+		return (
+			<Link key={idx} href={`/${_article.permalink}`}>
+				<Article>
+					<section>
+						<h1>{_article.title}</h1>
+						<p>{_article.date}</p>
+					</section>
+					<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
+				</Article>
+			</Link>
+		)
+	})
 
-	const loadMore = async () => {
-		setPage(page + 1)
+	const loadMore = useCallback(async () => {
+		setPage(p => p + 1)
 		const newArticles: string[] = await getArticles({page})
-		setArticles([...articles, ...newArticles])
+		setArticles(a => [...a, ...newArticles])
 		setLastResult(newArticles.length)
-	}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	useEffect(() => {
 		loadMore()
-	}, [])
+	}, [loadMore])
 
 	return (
 		<>

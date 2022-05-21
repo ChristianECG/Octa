@@ -5,20 +5,6 @@ type ArticleDescription = {
 	permalink: string,
 }
 
-export function slugToArticle (slug: string): ArticleDescription {
-	const permalink = slug.slice(9, -3)
-	const title = titleConverter(permalink)
-	const date = dateConverter(slug.slice(0, 8))
-	const file = `./articles/${slug}`
-
-	return {
-		title,
-		date,
-		file,
-		permalink,
-	}
-}
-
 function dateConverter (date: string): string {
 	type monthsType = {
 		[key: string]: string
@@ -49,4 +35,18 @@ function dateConverter (date: string): string {
 export function titleConverter (title: string): string {
 	const _title = title.replaceAll('_', ' ')
 	return _title.charAt(0).toUpperCase() + _title.slice(1)
+}
+
+export function slugToArticle (slug: string): ArticleDescription {
+	const permalink = slug.slice(9, -3)
+	const title = titleConverter(permalink)
+	const date = dateConverter(slug.slice(0, 8))
+	const file = `./articles/${slug}`
+
+	return {
+		title,
+		date,
+		file,
+		permalink,
+	}
 }

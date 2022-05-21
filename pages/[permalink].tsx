@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import Head from 'next/head'
 import { AlternativeHero } from '../components/Hero'
 import { getArticle } from '../services/article'
-import styled from 'styled-components'
 import Footer from '../components/Footer'
-import Head from 'next/head'
 import { titleConverter } from '../utils/articleUtils'
 
 const Container = styled.div`
@@ -69,11 +69,11 @@ const Home: NextPage = () => {
 
 	useEffect(() => {
 		(async () =>{
-			const permalink = router.query.permalink as string
-			setPermalink(permalink)
-			if (permalink) {
+			const _permalink = router.query.permalink as string
+			setPermalink(_permalink)
+			if (_permalink) {
 				try {
-					setArticle(await getArticle(permalink))
+					setArticle(await getArticle(_permalink))
 				} catch (e) {
 					setArticle({content: '', error: 'Error loading article'})
 				}

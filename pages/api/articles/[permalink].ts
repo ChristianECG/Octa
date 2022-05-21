@@ -13,20 +13,20 @@ type Article = {
 
 export default function handler(
 	req: NextApiRequest,
-	res: NextApiResponse<ArticleError | Article>
+	res: NextApiResponse<ArticleError | Article>,
 ) {
 	const permalink: string = req.query.permalink as string
 	const articles: string[] = fs.readdirSync('./articles').reverse()
 
-	let article: string | undefined;
-	let articleTitle = '';
+	let article: string | undefined
 
 	// Find the article with the given permalink
+	// eslint-disable-next-line no-restricted-syntax
 	for (const _article of articles) {
 		const _articlePermalink = _article.slice(9, permalink.length + 9)
 		if (_articlePermalink === permalink) {
-			article = _article;
-			break;
+			article = _article
+			break
 		}
 	}
 

@@ -5,7 +5,7 @@ type ArticleRequest = {
 	page?: number
 }
 
-export async function getArticles (query: ArticleRequest) {
+async function getArticles (query: ArticleRequest) {
 	const limit = query.limit || 9
 	const page = query.page || 0
 
@@ -13,3 +13,6 @@ export async function getArticles (query: ArticleRequest) {
 
 	return articles.data
 }
+
+export default getArticles
+export { getArticles }

@@ -5,17 +5,17 @@ import type { AppProps } from 'next/app'
 function MyApp({ Component, pageProps, router }: AppProps) {
 	return (
 		<motion.div
-		key={router.route}
-		initial="initial"
-		animate="animate"
-		variants={{
-			initial: {opacity: 0},
-			animate: {opacity: 1},
-		}}
-		transition={{duration: 0.4, ease: 'easeInOut'}}
+			key={router.route}
+			initial="initial"
+			animate="animate"
+			variants={{
+				initial: {opacity: 0},
+				animate: {opacity: 1},
+			}}
+			transition={{duration: 0.4, ease: 'easeInOut'}}
 		>
-		<Component {...pageProps} />
-    </motion.div>
+			<Component {...pageProps} />
+		</motion.div>
 	)
 }
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { RiGlobalLine, RiLinkedinLine, RiTwitterLine } from "react-icons/ri";
+import { RiGlobalLine, RiLinkedinLine, RiTwitterLine } from "react-icons/ri"
 import type { NextPage } from 'next'
-import Link from 'next/link';
+import Link from 'next/link'
 
 const HeroContainer = styled.header`
 	display: flex;
@@ -30,7 +30,7 @@ const Header = styled.h1`
 	color: white;
 	font-size: 1.8rem;
 	font-weight: 400;
-`;
+`
 
 const HeaderContainer = styled.div`
 	display: flex;
@@ -72,57 +72,53 @@ const TitleContainer = styled.section`
 	gap: 1rem;
 `
 
-const Hero: NextPage = () => {
-	return (
-		<HeroContainer style={{maxHeight: '500px'}}>
-			<HeaderContainer>
-				<IconContainer>
-					<Link href="/"><Icon src='./favicon.svg' /></Link>
-					<Link href="/"><Header>Octa</Header></Link>
-				</IconContainer>
-				<SocialIcons>
-					<a href="https://twitter.com/ChristianECG_" target="_blank">
-						<RiTwitterLine />
-					</a>
-					<a href="https://www.linkedin.com/in/christianeliascg/" target="_blank">
-						<RiLinkedinLine />
-					</a>
-					<a href="https://christianecg.com" target="_blank">
-						<RiGlobalLine />
-					</a>
-				</SocialIcons>
-			</HeaderContainer>
-			<TitleContainer>
-				<Title>Octa Blog</Title>
-				<Subtitle>Tecnología y desarrollo</Subtitle>
-			</TitleContainer>
-		</HeroContainer>
-	)
-}
+const Hero: NextPage = () => (
+	<HeroContainer style={{maxHeight: '500px'}}>
+		<HeaderContainer>
+			<IconContainer>
+				<Link href="/"><Icon src='./favicon.svg' /></Link>
+				<Link href="/"><Header>Octa</Header></Link>
+			</IconContainer>
+			<SocialIcons>
+				<a href="https://twitter.com/ChristianECG_" target="_blank" rel="noreferrer">
+					<RiTwitterLine />
+				</a>
+				<a href="https://www.linkedin.com/in/christianeliascg/" target="_blank" rel="noreferrer">
+					<RiLinkedinLine />
+				</a>
+				<a href="https://christianecg.com" target="_blank" rel="noreferrer">
+					<RiGlobalLine />
+				</a>
+			</SocialIcons>
+		</HeaderContainer>
+		<TitleContainer>
+			<Title>Octa Blog</Title>
+			<Subtitle>Tecnología y desarrollo</Subtitle>
+		</TitleContainer>
+	</HeroContainer>
+)
 
-const AlternativeHero = () => {
-	return (
-		<HeroContainer style={{height: 'auto'}}>
-			<HeaderContainer>
-				<IconContainer>
-					<Link href="/"><Icon src='./favicon.svg' /></Link>
-					<Link href="/"><Header>Octa</Header></Link>
-				</IconContainer>
-				<SocialIcons>
-					<a href="https://twitter.com/ChristianECG_" target="_blank">
-						<RiTwitterLine />
-					</a>
-					<a href="https://www.linkedin.com/in/christianeliascg/" target="_blank">
-						<RiLinkedinLine />
-					</a>
-					<a href="https://christianecg.com" target="_blank">
-						<RiGlobalLine />
-					</a>
-				</SocialIcons>
-			</HeaderContainer>
-		</HeroContainer>
-	)
-}
+const AlternativeHero = () => (
+	<HeroContainer style={{height: 'auto'}}>
+		<HeaderContainer>
+			<IconContainer>
+				<Link href="/"><Icon src='./favicon.svg' /></Link>
+				<Link href="/"><Header>Octa</Header></Link>
+			</IconContainer>
+			<SocialIcons>
+				<a href="https://twitter.com/ChristianECG_" target="_blank" rel="noreferrer">
+					<RiTwitterLine />
+				</a>
+				<a href="https://www.linkedin.com/in/christianeliascg/" target="_blank" rel="noreferrer">
+					<RiLinkedinLine />
+				</a>
+				<a href="https://christianecg.com" target="_blank" rel="noreferrer">
+					<RiGlobalLine />
+				</a>
+			</SocialIcons>
+		</HeaderContainer>
+	</HeroContainer>
+)
 
 export default Hero
 export { AlternativeHero }
