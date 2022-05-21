@@ -77,7 +77,7 @@ const Hero: NextPage = () => {
 		<HeroContainer style={{maxHeight: '500px'}}>
 			<HeaderContainer>
 				<IconContainer>
-					<Link href="/"><Icon src='./favicon.ico' /></Link>
+					<Link href="/"><Icon src='./favicon.svg' /></Link>
 					<Link href="/"><Header>Octa</Header></Link>
 				</IconContainer>
 				<SocialIcons>
@@ -105,7 +105,7 @@ const AlternativeHero = () => {
 		<HeroContainer style={{height: 'auto'}}>
 			<HeaderContainer>
 				<IconContainer>
-					<Link href="/"><Icon src='./favicon.ico' /></Link>
+					<Link href="/"><Icon src='./favicon.svg' /></Link>
 					<Link href="/"><Header>Octa</Header></Link>
 				</IconContainer>
 				<SocialIcons>

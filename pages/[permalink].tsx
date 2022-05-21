@@ -91,6 +91,7 @@ const Home: NextPage = () => {
 				<meta property="og:url" content="https://octa.page" key="url" />
 				<meta property="og:image" content="cover.svg" key="image" />
 				<meta property="og:description" content="Programando el futuro. Innovando el presente." key="description" />
+				<link rel="icon" href="/favicon.svg" />
 			</Head>
 			<AlternativeHero />
 			{
