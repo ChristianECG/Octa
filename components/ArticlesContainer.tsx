@@ -47,6 +47,8 @@ const LoadMore = styled.button`
 	margin: 0 auto 20px;
 	border: none;
 	background: none;
+	cursor: pointer;
+	padding: 10px;
 `
 
 const ArticlesContainer: NextPage = () => {
