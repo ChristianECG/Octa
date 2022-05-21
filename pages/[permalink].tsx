@@ -35,6 +35,11 @@ const Container = styled.div`
 		margin-bottom: 20px;
 	}
 
+	a {
+		color: #00b9c1;
+		font-weight: 600;
+	}
+
 	img.error {
 		max-width: 400px;
 		margin: 0 auto;
