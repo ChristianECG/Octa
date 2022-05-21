@@ -7,12 +7,15 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 
 const Article = styled.article`
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+	text-align: center;
+	height: 100%;
 
 	h1 {
 		font-size: 1.2rem;
+		margin-top: 1rem;
 	}
 
 	p {
@@ -55,8 +58,10 @@ const ArticlesContainer: NextPage = () => {
 			return (
 				<a key={idx} href={`/${_article.permalink}`}>
 					<Article>
-						<h1>{_article.title}</h1>
-						<p>{_article.date}</p>
+						<section>
+							<h1>{_article.title}</h1>
+							<p>{_article.date}</p>
+						</section>
 						<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
 					</Article>
 				</a>

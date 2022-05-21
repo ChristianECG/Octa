@@ -10,7 +10,6 @@ const HeroContainer = styled.header`
 	background-size: cover;
 	width: 100%;
 	height: 100vh;
-	max-height: 500px;
 	padding: 20px;
 `
 
@@ -19,7 +18,7 @@ const Icon = styled.img`
 	height: 2rem;
 `
 
-const IconContainer = styled.span`
+const IconContainer = styled.a`
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
@@ -73,9 +72,9 @@ const TitleContainer = styled.section`
 
 const Hero: NextPage = () => {
 	return (
-		<HeroContainer>
+		<HeroContainer style={{maxHeight: '500px'}}>
 			<HeaderContainer>
-				<IconContainer>
+				<IconContainer href="/">
 					<Icon src='./favicon.ico' />
 					<Header>Octa</Header>
 				</IconContainer>
@@ -99,4 +98,29 @@ const Hero: NextPage = () => {
 	)
 }
 
+const AlternativeHero = () => {
+	return (
+		<HeroContainer style={{height: 'auto'}}>
+			<HeaderContainer>
+				<IconContainer href="/">
+					<Icon src='./favicon.ico' />
+					<Header>Octa</Header>
+				</IconContainer>
+				<SocialIcons>
+					<a href="https://twitter.com/ChristianECG_" target="_blank">
+						<RiTwitterLine />
+					</a>
+					<a href="https://www.linkedin.com/in/christianeliascg/" target="_blank">
+						<RiLinkedinLine />
+					</a>
+					<a href="https://christianecg.com" target="_blank">
+						<RiGlobalLine />
+					</a>
+				</SocialIcons>
+			</HeaderContainer>
+		</HeroContainer>
+	)
+}
+
 export default Hero
+export { AlternativeHero }
