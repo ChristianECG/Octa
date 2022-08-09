@@ -60,43 +60,40 @@ const Container = styled.div`
 	}
 `
 
-const Home: NextPage = ({ permalink, article }) => {
-	console.log(article, permalink)
-	return (
-		<>
-			<Head>
-				<title>{permalink ? titleConverter(permalink) : 'Error 404'} - Octa | Blog</title>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta property="og:title" content={permalink ? titleConverter(permalink) : 'Error 404'} key="title" />
-				<meta property="og:type" content="website" key="type" />
-				<meta property="og:url" content="https://octa.page" key="url" />
-				<meta property="og:image" content="https://octa.page/cover.svg" key="image" />
-				<meta property="og:description" content="Programando el futuro. Innovando el presente." key="description" />
-				<link rel="icon" href="/favicon.svg" />
-			</Head>
-			<AlternativeHero />
-			{
-				permalink && article && article.content &&
-				<Container dangerouslySetInnerHTML={{ __html: article.content }} />
-			}
-			{
-				permalink && article && (article.error || !article.content) &&
-				<Container style={{ textAlign: 'center' }}>
-					<img className="error" src='./404.svg' alt='Error 404' />
-				</Container>
-			}
-			<Footer />
-		</>
-	)
-}
+const Home: NextPage<{permalink:string, article:any}> = ({ permalink, article }) => (
+	<>
+		<Head>
+			<title>{permalink ? titleConverter(permalink) : 'Error 404'} - Octa | Blog</title>
+			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			<meta property="og:title" content={permalink ? titleConverter(permalink) : 'Error 404'} key="title" />
+			<meta property="og:type" content="website" key="type" />
+			<meta property="og:url" content="https://octa.page" key="url" />
+			<meta property="og:image" content="https://octa.page/cover.svg" key="image" />
+			<meta property="og:description" content="Programando el futuro. Innovando el presente." key="description" />
+			<link rel="icon" href="/favicon.svg" />
+		</Head>
+		<AlternativeHero />
+		{
+			permalink && article && article.content &&
+			<Container dangerouslySetInnerHTML={{ __html: article.content }} />
+		}
+		{
+			permalink && article && (article.error || !article.content) &&
+			<Container style={{ textAlign: 'center' }}>
+				<img className="error" src='./404.svg' alt='Error 404' />
+			</Container>
+		}
+		<Footer />
+	</>
+)
+
 
 export async function getServerSideProps(context: any) {
 	const { permalink } = context.query
 	const { host } = context.req.headers
 	return getArticle(permalink as string, host as string)
 		.then(article => ({ props: { permalink, article } }))
-		.catch((e) => {
-			console.log(e)
+		.catch((_e) => {
 			const article = { content: '', error: 'Error loading article' }
 			return { props: { permalink, article } }
 		})
