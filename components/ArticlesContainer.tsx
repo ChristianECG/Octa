@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { BsChevronDoubleDown } from "react-icons/bs"
 import Link from 'next/link'
 import { getArticles } from '../services/articles'
@@ -72,22 +72,22 @@ const ArticlesContainer: NextPage = () => {
 	const [lastResult, setLastResult] = useState(9)
 	const [canCallZeroPage, setCanCallZeroPage] = useState(true)
 
-	const load = (_page: number) => {
+	const load = useCallback((_page: number) => {
 		if (!canCallZeroPage && _page === 0) return
 		setCanCallZeroPage(false)
 		getArticles({ page: _page }).then((newArticles) => {
 			setArticles([...articles, ...newArticles])
 			setLastResult(newArticles.length)
 		})
-	}
+	}, [articles, canCallZeroPage])
+
+	useEffect(() => { load(0) }, [load])
 
 	const loadMore = () => {
 		const newPage = page + 1
 		setPage(newPage)
 		load(newPage)
 	}
-
-	load(0)
 
 	return (
 		<>
