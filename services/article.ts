@@ -1,7 +1,14 @@
 import axios from 'axios'
 
 async function getArticle (query: string, host: string) {
-	const article = await axios.get(`http://${host}/api/articles/${query}`)
+	const article = { data: {} }
+	try {
+		const response = await axios.get(encodeURI(`https://${host}/api/articles/${query}`))
+		article.data = response.data
+	} catch (error) {
+		const response = await axios.get(encodeURI(`http://${host}/api/articles/${query}`))
+		article.data = response.data
+	}
 	return article.data
 }
 

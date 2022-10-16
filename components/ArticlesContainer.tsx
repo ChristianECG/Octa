@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import type { NextPage } from 'next'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BsChevronDoubleDown } from "react-icons/bs"
 import Link from 'next/link'
 import { getArticles } from '../services/articles'
@@ -51,37 +51,43 @@ const LoadMore = styled.button`
 	padding: 10px;
 `
 
+const ArticlesMapper = (_articles: string[] ) => _articles.map((article, idx) => {
+	const _article = slugToArticle(article)
+	return (
+		<Link key={idx} href={`/${_article.permalink}`}>
+			<Article>
+				<section>
+					<h1>{_article.title}</h1>
+					<p>{_article.date}</p>
+				</section>
+				<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
+			</Article>
+		</Link>
+	)
+})
+
 const ArticlesContainer: NextPage = () => {
 	const [articles, setArticles] = useState([] as string[])
 	const [page, setPage] = useState(0)
 	const [lastResult, setLastResult] = useState(9)
+	const [canCallZeroPage, setCanCallZeroPage] = useState(true)
 
-	const ArticlesMapper = (_articles: string[] ) => _articles.map((article, idx) => {
-		const _article = slugToArticle(article)
-		return (
-			<Link key={idx} href={`/${_article.permalink}`}>
-				<Article>
-					<section>
-						<h1>{_article.title}</h1>
-						<p>{_article.date}</p>
-					</section>
-					<img src={`/covers/${ (idx % 7) + 1 }.svg`} alt={_article.title} />
-				</Article>
-			</Link>
-		)
-	})
+	const load = (_page: number) => {
+		if (!canCallZeroPage && _page === 0) return
+		setCanCallZeroPage(false)
+		getArticles({ page: _page }).then((newArticles) => {
+			setArticles([...articles, ...newArticles])
+			setLastResult(newArticles.length)
+		})
+	}
 
-	const loadMore = useCallback(async () => {
-		setPage(p => p + 1)
-		const newArticles: string[] = await getArticles({page})
-		setArticles(a => [...a, ...newArticles])
-		setLastResult(newArticles.length)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	const loadMore = () => {
+		const newPage = page + 1
+		setPage(newPage)
+		load(newPage)
+	}
 
-	useEffect(() => {
-		loadMore()
-	}, [loadMore])
+	load(0)
 
 	return (
 		<>
