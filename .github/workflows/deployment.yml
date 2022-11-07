@@ -1,0 +1,24 @@
+name: Deploy on PROD server
+run-name: ${{ github.actor }} is deploying to PROD server
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd /var/www/html/Octa
+            git pull origin master
+            npm install
+            npm run build
+            pm2 restart Octa
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
