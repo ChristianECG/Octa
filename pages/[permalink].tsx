@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import styled from 'styled-components'
 import Head from 'next/head'
+import styled from 'styled-components'
+import Footer from '../components/Footer'
 import { AlternativeHero } from '../components/Hero'
 import { getArticle } from '../services/article'
-import Footer from '../components/Footer'
 import { titleConverter } from '../utils/articleUtils'
 
 const Container = styled.div`
@@ -67,7 +67,6 @@ const Home: NextPage<{permalink:string, article:any}> = ({ permalink, article })
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			<meta property="og:title" content={permalink ? titleConverter(permalink) : 'Error 404'} key="title" />
 			<meta property="og:type" content="website" key="type" />
-			<meta property="og:url" content="https://octa.page" key="url" />
 			<meta property="og:image" content="https://octa.page/cover.png" key="image" />
 			<meta property="og:description" content="Programando el futuro. Innovando el presente." key="description" />
 			<link rel="icon" href="/favicon.svg" />
